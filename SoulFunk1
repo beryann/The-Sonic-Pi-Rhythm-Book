@@ -1,0 +1,19 @@
+#soul/funck
+use_bpm 110
+
+
+live_loop :drums do
+  sample :bd_haus, amp: 3
+  sleep 1
+  with_fx :slicer,mix: 0.9 do
+    sample :sn_dub, amp: 1.5, rate: 1
+    sleep 0.5
+    sample :drum_cowbell, amp: 1.5 if one_in(4)
+    sleep 0.5
+  end
+end
+
+live_loop :hat do
+  sample :hat_bdu, amp: 3, rate: 1.5, pan: rrand(-0.8, 0.8), cutoff: rrand(60,120) if rand< 0.75
+  sleep 0.25
+end
