@@ -1,0 +1,20 @@
+define :pattern do |pattern|
+  return pattern.ring.tick == "x"
+end
+
+live_loop :kick do
+  with_fx :reverb do
+    sample :bd_haus if pattern "xxx-----"
+    sleep 0.25
+  end
+end
+
+live_loop :sn do
+  sample :sn_zome if pattern "----x---"
+  sleep 0.25
+end
+
+live_loop :hat do
+  sample :hat_snap if pattern "xxxx" if spread(11,14).tick
+  sleep 0.25
+end
