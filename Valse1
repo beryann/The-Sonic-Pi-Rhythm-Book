@@ -1,0 +1,41 @@
+use_bpm 120
+
+live_loop :valse1 do
+  sample :bd_haus, amp: 2
+  sleep 3
+end
+
+use_synth :organ_tonewheel
+live_loop :temps1 do
+  play :a3, amp: 2
+  sleep 3
+end
+
+live_loop :valse2 do
+  
+  sleep 1
+  sample :drum_cymbal_closed, amp: 1.5
+  sleep 1
+  sample :drum_cymbal_closed, amp: 1.5
+  sleep 1
+end
+
+live_loop :piano2 do
+  use_synth :rhodey
+  with_fx :reverb, mix: 0.5 do
+    sleep 1
+    play chord(:a4, :m)
+    sleep 0.5
+    play chord(:a4, :m)
+    sleep 0.5
+    play chord(:a4, :m)
+    sleep 1
+  end
+end
+
+
+use_synth :hollow
+live_loop :mel do
+  play [:a5,:c4], release: 3, amp: 4
+  sleep 1
+end
