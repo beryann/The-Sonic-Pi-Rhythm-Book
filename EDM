@@ -1,0 +1,50 @@
+
+
+
+use_bpm 128
+
+live_loop :kick do
+  sample :bd_tek, amp: 4
+  sleep 1
+end
+
+
+live_loop :snare, sync: :kick do
+  sleep 0.5
+  with_fx :reverb, mix: 0.5 do
+    sample :elec_snare, amp: 1
+    sleep 0.5
+  end
+end
+
+live_loop :hihat, sync: :kick do
+  sample :drum_cymbal_closed, amp: 1, finish: 0.1
+  sleep 0.25
+end
+
+with_fx :ping_pong, mix: 0.5 do
+  live_loop :bass, sync: :kick do
+    use_synth :tb303
+    play :e1, release: 0.3, cutoff: 90, amp: 2.5 if one_in(2)
+    sleep 0.5
+    play :e1, release: 0.3, cutoff: 80, amp: 2.5 if one_in(3)
+    sleep 0.5
+    play :g1, release: 0.3, cutoff: 85, amp: 2.5 if one_in(4)
+    sleep 0.5
+    play :a1, release: 0.3, cutoff: 80, amp: 2.5 if one_in(5)
+    sleep 0.5
+  end
+end
+
+live_loop :chords, sync: :kick do
+  use_synth :saw
+  play_chord [:e3, :g3, :b3], release: 2, cutoff: 100, amp: 1.5 if one_in(4)
+  sleep 2
+end
+
+
+
+
+
+
+
