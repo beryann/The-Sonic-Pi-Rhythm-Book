@@ -1,0 +1,29 @@
+use_bpm 80
+
+live_loop :kick do
+  sample :bd_haus, amp: 2
+  sleep 1
+end
+
+with_fx :flanger, delay: rrand(0.1, 0.7) do
+  live_loop :snare, sync: :kick do
+    sleep 1
+    sample :sn_dolf, amp: 1.5
+    sleep 1
+  end
+end
+
+live_loop :hihat, sync: :kick do
+  sample :drum_cymbal_closed, amp: 1, finish: 0.2
+  sleep 0.5
+end
+
+with_fx :reverb,room: 0.9, mix: 0.7 do
+  live_loop :chords, sync: :kick do
+    use_synth :hollow
+    play_chord [:c4, :e4, :g4], sustain: 2, amp: 2
+    sleep 4
+    play_chord [:a3, :c4, :e4], sustain: 2, amp: 2
+    sleep 4
+  end
+end
