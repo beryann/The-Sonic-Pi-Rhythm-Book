@@ -1,0 +1,48 @@
+# Ambient Rhythm in Sonic Pi
+use_bpm 60  
+
+set_volume! 3
+
+
+live_loop :kick do
+  sample :bd_fat, amp: 0.6, lpf: 80
+  sleep 4
+end
+
+
+live_loop :snare do
+  sync :kick
+  sleep 2
+  with_fx :reverb, room: 0.8, mix: 0.6 do
+    sample :drum_snare_soft, amp: 0.4, rate: 0.5
+  end
+  sleep 2
+end
+
+# Boucle pour un hi-hat délicat
+live_loop :hihat do
+  sync :kick
+  sleep 0.5
+  with_fx :echo, mix: 0.3, phase: 0.25 do
+    sample :drum_cymbal_closed, amp: 0.2, finish: 0.1
+  end
+  sleep 0.5
+end
+
+# Boucle pour des textures de percussion
+live_loop :textures do
+  sync :kick
+  with_fx :slicer, phase: 0.25, mix: 0.4 do
+    sample :perc_bell, amp: 0.3, rate: rrand(0.5, 1.5), pan: rrand(-1, 1)
+    sleep 4
+  end
+end
+
+# Effet d'ambiance subtil
+live_loop :ambience do
+  with_fx :reverb, room: 0.9 do
+    sample :ambi_choir, rate: 0.3, amp: 0.2, pan: rrand(-1, 1), sustain: 6
+    sleep 8
+  end
+end
+
