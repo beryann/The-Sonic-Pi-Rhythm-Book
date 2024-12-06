@@ -1,0 +1,33 @@
+# Chill Rhythm in Sonic Pi
+use_bpm 80  # Tempo doux
+
+# Boucle pour la grosse caisse
+live_loop :kick do
+  sample :bd_haus, amp: 1.2  # Grosse caisse
+  sleep 1
+end
+
+# Boucle pour la caisse claire
+live_loop :snare do
+  sync :kick
+  sleep 1
+  sample :drum_snare_soft, amp: 0.8  # Caisse claire légère
+  sleep 1
+end
+
+# Boucle pour le hi-hat
+live_loop :hihat do
+  sync :kick
+  sleep 0.5
+  sample :drum_cymbal_closed, amp: 0.5, finish: 0.2  # Hi-hat fermé subtil
+  sleep 0.5
+end
+
+# Boucle pour un shaker léger
+live_loop :shaker do
+  sync :kick
+  sample :perc_snap, amp: 0.3, pan: rrand(-0.5, 0.5)  # Snap pour une texture
+  sleep 0.75
+  sample :perc_snap, amp: 0.3, pan: rrand(-0.5, 0.5)
+  sleep 1.25
+end
