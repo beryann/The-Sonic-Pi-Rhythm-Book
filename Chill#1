@@ -1,0 +1,33 @@
+set_volume! 2
+
+# Chill rhythm in Sonic Pi
+
+set_volume! 2
+
+
+use_bpm 98  # Tempo doux
+
+# Boucle pour la grosse caisse
+live_loop :kick do
+  sample :bd_klub, amp: 1.2
+  sleep 1
+end
+
+
+live_loop :hihat do
+  sync :kick
+  sleep 0.5
+  sample :drum_cymbal_closed, amp: 0.6, finish: 0.3
+  sleep 0.5
+end
+
+# Boucle pour le shaker
+live_loop :shaker do
+  sync :kick
+  with_fx :reverb, room: 0.7 do
+    sample :perc_snap, amp: 0.5
+    sleep 0.75
+    sample :perc_snap, amp: 0.5
+    sleep 1.25
+  end
+end
