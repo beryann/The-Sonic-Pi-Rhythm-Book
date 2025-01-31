@@ -1,0 +1,23 @@
+use_bpm 110
+
+#Drum Loops by Sam Rothstein (https://www.youtube.com/watch?v=R9WvqTY6_LU)
+
+live_loop :kicks do
+  sample :bd_tek, rate: 0.9, amp: 1.0
+  sleep 1.0
+end
+live_loop :clap do
+  sleep 1
+  sample :mehackit_phone1, amp: 0.8, start: 0.13, finish: 0.28, rate: 0.6
+  sleep 2
+  sample :mehackit_phone1, amp: 0.8, start: 0.13, finish: 0.28, rate: 0.6
+  sleep 1
+end
+live_loop :ticks_0 do
+  sync :kicks
+  sleep 0.5
+  live_loop :ticks_inner_0 do
+    sample :drum_cymbal_closed, rate: 0.925, amp: 0.8
+    sleep 1
+  end
+end
